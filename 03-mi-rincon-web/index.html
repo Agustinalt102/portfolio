@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi rincón web</title>
+
+  <!-- Aplico tema ANTES del CSS para evitar “flash” -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme'); // 'dark' | 'light' | null
+        var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefers)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    /* ========= Variables (usar SIEMPRE var(--...)) ========= */
+    :root{
+      --bg:#ffffff; --text:#0f172a; --muted:#64748b;
+      --card:#f8fafc; --border:#e5e7eb; --accent:#4f46e5;
+      --radius:16px; --shadow:0 8px 20px rgba(2,6,23,.06);
+      --maxw:1100px;
+    }
+    :root.dark{
+      --bg:#0b0c10; --text:#e5e7eb; --muted:#9aa0aa;
+      --card:#151821; --border:#23262d; --accent:#8b8ef9;
+      --shadow:0 10px 24px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+      line-height:1.6; -webkit-font-smoothing:antialiased;
+      transition:background .2s,color .2s;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 16px}
+
+    /* ===== Header ===== */
+    .site-header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border)}
+    .header-row{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .site-title{margin:0; font-weight:800; letter-spacing:.2px; font-size:clamp(1.1rem,1.2vw+1rem,1.6rem)}
+    .theme-toggle{
+      appearance:none; border:1px solid var(--border); background:var(--card); color:var(--text);
+      padding:.5rem .7rem; border-radius:12px; line-height:1; box-shadow:var(--shadow);
+      transition:transform .08s ease,background .2s,color .2s,border-color .2s;
+    }
+    .theme-toggle:hover{transform:translateY(-1px)}
+
+    /* ===== Fila: cover + card ===== */
+    .post-row{display:grid; grid-template-columns:minmax(240px,1fr) 2fr; gap:24px; align-items:stretch; margin:22px 0}
+    @media (max-width:900px){ .post-row{grid-template-columns:1fr} }
+    .post-media{display:flex; align-items:stretch}
+    .cover{
+      width:100%; border-radius:var(--radius); border:1px solid var(--border); color:var(--accent);
+      display:grid; place-items:center; font-weight:700; letter-spacing:.3px;
+      font-size:clamp(1.1rem,2.2vw + .6rem,1.6rem); height:clamp(160px,28vh,280px);
+      box-shadow:var(--shadow); background:#e6eaf7;
+    }
+    :root.dark .cover{background:#151a24}
+
+    .post-card{
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:18px 20px 20px; box-shadow:var(--shadow);
+    }
+    .post-title{margin:.1rem 0 .4rem; font-size:clamp(1.1rem,1.2vw+1rem,1.5rem)}
+    .post-meta{margin:0 0 .6rem; color:var(--muted); font-size:.95rem}
+    .post-excerpt{margin:0}
+
+    /* ===== Footer ===== */
+    .site-footer{border-top:1px solid var(--border); padding:26px 0 44px; margin-top:36px; color:var(--muted); text-align:center}
+    .footer-links{margin-top:.4rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <h1 class="site-title">Mi rincón web</h1>
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ITEM 1 -->
+    <section class="post-row">
+      <div class="post-media"><div class="cover">Cover 1</div></div>
+      <article class="post-card">
+        <h2 class="post-title"><a href="#">Cómo hice este blog sin frameworks</a></h2>
+        <p class="post-meta">2025-08-01 — 4 min</p>
+        <p class="post-excerpt">Estructura simple con HTML, CSS y un toque de JS.</p>
+      </article>
+    </section>
+    <!-- ITEM 2 -->
+    <section class="post-row">
+      <div class="post-media"><div class="cover">Cover 2</div></div>
+      <article class="post-card">
+        <h2 class="post-title"><a href="#">Responsive: Grid + Flex + Media Queries</a></h2>
+        <p class="post-meta">2025-08-03 — 6 min</p>
+        <p class="post-excerpt">Tips prácticos para mobile/desktop.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Mi rincón web</small>
+      <div class="footer-links">
+        <a href="mailto:Agustin.Alt.97@gmail.com">Agustin.Alt.97@gmail.com</a><span>·</span><a href="#">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Toggle de tema robusto (sin errores en navegadores viejos) =====
+    (function () {
+      function isDark(){ return document.documentElement.classList.contains('dark'); }
+      function setTheme(mode){
+        try { document.documentElement.classList.toggle('dark', mode === 'dark'); localStorage.setItem('theme', mode); } catch(e){}
+        updateIcon();
+      }
+      function toggleTheme(){ setTheme(isDark() ? 'light' : 'dark'); }
+      function updateIcon(){
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        var dark = isDark();
+        btn.textContent = dark ? '☀️' : '🌙';
+        btn.setAttribute('aria-label', dark ? 'Cambiar a claro' : 'Cambiar a oscuro');
+      }
+      function initFromStorageOrSystem(){
+        try{
+          var stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light'){
+            document.documentElement.classList.toggle('dark', stored === 'dark');
+          } else if (window.matchMedia) {
+            var prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.classList.toggle('dark', prefers);
+          }
+        }catch(e){}
+        updateIcon();
+      }
+      function listenSystemChanges(){
+        if (!window.matchMedia) return;
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var handler = function(e){
+          try{
+            var stored = localStorage.getItem('theme');
+            if (!stored){
+              document.documentElement.classList.toggle('dark', !!e.matches);
+              updateIcon();
+            }
+          }catch(err){}
+        };
+        if (mq.addEventListener) mq.addEventListener('change', handler);
+        else if (mq.addListener) mq.addListener(handler);
+      }
+      document.addEventListener('DOMContentLoaded', function(){
+        var btn = document.getElementById('themeToggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+        initFromStorageOrSystem();
+        listenSystemChanges();
+        document.getElementById('year').textContent = new Date().getFullYear();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio de Agustín Altamiranda</title>
+<link rel="icon" href="favicon.png" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="header">
+  <div class="container row">
+    <div>
+      <h1>Portfolio de Agustín Altamiranda</h1>
+      <p>Desarrollador Web — HTML • CSS • JavaScript</p>
+    </div>
+    <div>
+      <a class="btn" href="https://wa.me/5491134968752" target="_blank">WhatsApp</a>
+      <a class="btn outline" href="https://github.com/Agustinalt102" target="_blank">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="grid" id="proyectos">
+    <!-- Mini E-commerce -->
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="Mini E-commerce">
+      <div class="body">
+        <h3>Mini E-commerce</h3>
+        <p class="muted">Catálogo con filtros, búsqueda y carrito persistente en LocalStorage.</p>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <a class="btn outline" href="https://agus-mini-ecommerce.netlify.app/" target="_blank" rel="noopener">Ver demo</a>
+          <a class="btn outline" href="https://github.com/Agustinalt102/mini-ecommerce" target="_blank" rel="noopener">Ver código</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Blog con modo oscuro -->
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop" alt="Blog con modo oscuro">
+      <div class="body">
+        <h3>Blog con modo oscuro</h3>
+        <p class="muted">Toggle persistente con localStorage, maquetado semántico y responsive.</p>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <a class="btn outline" href="https://portfolio-agustin-alt.netlify.app/03-mi-rincon-web/index.html" target="_blank" rel="noopener">Ver demo</a>
+          <a class="btn outline" href="https://github.com/Agustinalt102/portfolio" target="_blank" rel="noopener">Ver código</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Landing One-Page -->
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop" alt="Landing One-Page">
+      <div class="body">
+        <h3>Landing One-Page</h3>
+        <p class="muted">Landing profesional con formulario Netlify Forms, diseño responsive y modo claro/oscuro.</p>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <a class="btn outline" href="https://agustin-landing.netlify.app/" target="_blank" rel="noopener">Ver demo</a>
+          <a class="btn outline" href="https://github.com/Agustinalt102/landing-onepage" target="_blank" rel="noopener">Ver código</a>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <small>© <span id="year"></span> Agustín Altamiranda</small><br>
+    <a href="mailto:Agustin.Alt.97@gmail.com">Agustin.Alt.97@gmail.com</a> ·
+    <a href="https://wa.me/5491134968752" target="_blank">WhatsApp</a> ·
+    <a href="https://github.com/Agustinalt102" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear()
+</script>
+
+</body>
+</html>

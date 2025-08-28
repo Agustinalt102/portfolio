@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Buena Mesa — Restaurante</title>
+<link rel="stylesheet" href="styles.css"></head><body>
+<header class="header">
+  <nav class="nav container">
+    <a href="../index.html" class="logo">La Buena Mesa</a>
+    <ul class="nav-list"><li><a href="#menu">Menú</a></li><li><a href="#nosotros">Nosotros</a></li><li><a href="#contacto">Contacto</a></li><li><button id="reservarBtn" class="btn">Reservar</button></li></ul>
+  </nav>
+  <section class="hero container">
+    <img src="assets/hero.svg" alt="Restaurante" class="hero-img">
+    <div class="hero-text"><h1>Cocina casera con sabor a encuentro</h1><p>Platos frescos, ingredientes de temporada y un ambiente que invita a quedarse.</p><button id="ctaBtn" class="btn">Reservar ahora</button></div>
+  </section>
+</header>
+<main>
+  <section id="menu" class="section container"><h2>Menú destacado</h2>
+    <div class="grid-3">
+      <article class="card"><img src="assets/plato1.svg" alt=""><div class="body" style="padding:12px"><h3>Ravioles caseros</h3><p>Masa fresca, tomate y albahaca.</p><span class="price">$7.900</span></div></article>
+      <article class="card"><img src="assets/plato2.svg" alt=""><div class="body" style="padding:12px"><h3>Milanesa napolitana</h3><p>Clásico argentino.</p><span class="price">$8.500</span></div></article>
+      <article class="card"><img src="assets/plato3.svg" alt=""><div class="body" style="padding:12px"><h3>Ensalada estación</h3><p>Verdes y vinagreta.</p><span class="price">$6.200</span></div></article>
+      <article class="card"><img src="assets/plato4.svg" alt=""><div class="body" style="padding:12px"><h3>Risotto de hongos</h3><p>Cremoso.</p><span class="price">$9.200</span></div></article>
+      <article class="card"><img src="assets/plato5.svg" alt=""><div class="body" style="padding:12px"><h3>Sorrentinos</h3><p>Jamón y queso.</p><span class="price">$8.900</span></div></article>
+      <article class="card"><img src="assets/plato6.svg" alt=""><div class="body" style="padding:12px"><h3>Flan casero</h3><p>Con dulce y crema.</p><span class="price">$3.500</span></div></article>
+    </div>
+  </section>
+  <section id="nosotros" class="section container"><h2>Sobre nosotros</h2><p>Equipo familiar apasionado por la cocina, productos frescos y recetas con historia.</p></section>
+  <section id="contacto" class="section container"><h2>Contacto</h2>
+    <form id="formReserva" class="form">
+      <label>Nombre<input required type="text" name="nombre"></label>
+      <label>Teléfono<input required type="tel" name="telefono"></label>
+      <label>Fecha<input required type="date" name="fecha"></label>
+      <label>Personas<input required type="number" min="1" max="12" name="personas"></label>
+      <button class="btn" type="submit">Enviar reserva</button>
+    </form>
+    <div class="info"><p><strong>Dirección:</strong> Av. Siempreviva 742, Buenos Aires</p><p><strong>Horario:</strong> Mar-Dom 12:00–23:00</p></div>
+  </section>
+</main>
+<footer class="footer"><div class="container"><small>© <span id="year"></span> La Buena Mesa</small><br><a href="mailto:Agustin.Alt.97@gmail.com">Agustin.Alt.97@gmail.com</a> <a href="https://wa.me/5491134968752" target="_blank">WhatsApp: +54 9 11 3496-8752</a></div></footer>
+<script src="script.js"></script></body></html>

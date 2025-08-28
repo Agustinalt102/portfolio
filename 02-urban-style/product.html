@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Style — Producto</title>
+<link rel="stylesheet" href="styles.css"></head><body>
+<header class="header"><div class="container topbar"><a class="logo" href="index.html">Urban Style</a><div class="actions"><a href="cart.html" class="btn">🛒 Carrito <span id="cartCount" class="badge">0</span></a></div></div></header>
+<main class="container" id="detail"></main>
+<footer class="footer"><div class="container"><small>© <span id="year"></span> Urban Style</small><br><a href="mailto:Agustin.Alt.97@gmail.com">Agustin.Alt.97@gmail.com</a> <a href="https://wa.me/5491134968752" target="_blank">WhatsApp</a></div></footer>
+<script src="store.js"></script>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const params=new URLSearchParams(location.search);const id=parseInt(params.get('id')||'1',10);
+const p=STORE.find(x=>x.id===id)||STORE[0];const detail=document.getElementById('detail');
+detail.innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0">
+<img src="${p.img}" alt="${p.name}" style="width:100%;border-radius:12px;border:1px solid var(--border)">
+<div><h1>${p.name}</h1><p class="price" style="font-size:1.4rem">${money(p.price)}</p><p>Prenda urbana de alta durabilidad y calce cómodo. Envíos a todo el país.</p><button class="btn" onclick="addToCart(${p.id})">Agregar al carrito</button></div></div>`;
+</script></body></html>

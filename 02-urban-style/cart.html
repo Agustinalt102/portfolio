@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Style — Carrito</title>
+<link rel="stylesheet" href="styles.css"></head><body>
+<header class="header"><div class="container topbar"><a class="logo" href="index.html">Urban Style</a><div class="actions"><a href="cart.html" class="btn">🛒 Carrito <span id="cartCount" class="badge">0</span></a></div></div></header>
+<main class="container"><h1>Carrito</h1><div id="cart"></div></main>
+<footer class="footer"><div class="container"><small>© <span id="year"></span> Urban Style</small><br><a href="mailto:Agustin.Alt.97@gmail.com">Agustin.Alt.97@gmail.com</a> <a href="https://wa.me/5491134968752" target="_blank">WhatsApp</a></div></footer>
+<script src="store.js"></script>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const el=document.getElementById('cart');
+function renderCart(){const cart=getCart();
+  if(cart.length===0){el.innerHTML='<p>Tu carrito está vacío.</p>';return;}
+  const rows=cart.map(it=>{const p=STORE.find(x=>x.id===it.id);const subtotal=p.price*it.qty;return `<tr>
+    <td style="display:flex;gap:10px;align-items:center"><img src="${p.img}" alt="" style="width:64px;height:64px;border-radius:8px;border:1px solid var(--border)"> ${p.name}</td>
+    <td>${money(p.price)}</td>
+    <td><input type="number" min="1" value="${it.qty}" data-id="${p.id}" style="width:70px;background:#0f0f10;color:#fff;border:1px solid var(--border)"></td>
+    <td>${money(subtotal)}</td>
+    <td><button class="btn" data-remove="${p.id}">Quitar</button></td>
+  </tr>`}).join('');
+  const total=cart.reduce((a,it)=>{const p=STORE.find(x=>x.id===it.id);return a+p.price*it.qty},0);
+  el.innerHTML=`<div style="overflow:auto"><table><thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
+  <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center"><strong>Total: ${money(total)}</strong><button class="btn" onclick="checkout()">Finalizar compra</button></div>`;
+  el.querySelectorAll('input[type="number"]').forEach(inp=>{inp.addEventListener('change',e=>updateQty(parseInt(e.target.dataset.id,10),parseInt(e.target.value,10)))});
+  el.querySelectorAll('button[data-remove]').forEach(btn=>{btn.addEventListener('click',e=>removeFromCart(parseInt(e.target.dataset.remove,10)))});
+}
+function checkout(){alert('Checkout simulado. ¡Gracias por tu compra!');setCart([]);renderCart();}
+document.addEventListener('DOMContentLoaded',renderCart);window.addEventListener('storage',renderCart);
+</script></body></html>

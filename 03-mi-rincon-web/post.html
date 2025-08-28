@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artículo — Mi rincón web</title>
+
+  <!-- Tema antes del CSS (evita parpadeo) -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefers)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a href="./index.html" class="site-title" style="text-decoration:none">Mi rincón web</a>
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <main class="container" id="content" style="padding:16px 0">
+    <!-- Acá se inyecta el artículo -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Mi rincón web</small>
+    </div>
+  </footer>
+
+  <script src="./theme.js" defer></script>
+  <script src="./post.data.js" defer></script>
+  <script src="./post.render.js" defer></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
