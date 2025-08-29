@@ -1,81 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfolio de Agustín Altamiranda</title>
-<link rel="icon" href="favicon.png" sizes="any">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agustín Altamiranda — Frontend</title>
+  <meta name="description" content="Portfolio Frontend: landings rápidas, mini e-commerce y maquetación HTML/CSS/JS.">
+  <link rel="canonical" href="https://agustinalt102.github.io/portfolio/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Agustín Altamiranda — Frontend">
+  <meta property="og:description" content="Proyectos: landing pages, mini e-commerce y más (HTML/CSS/JS).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agustinalt102.github.io/portfolio/">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Agustin+Altamiranda+—+Frontend">
+
+  <style>
+    /* === Reset & tokens === */
+    *, *::before, *::after { box-sizing: border-box; }
+    :root{
+      --bg: #ffffff; --fg:#111; --muted:#666; --accent:#2563eb; --card:#f6f7f9;
+      --radius: 14px; --shadow: 0 8px 24px rgba(0,0,0,.08);
+      color-scheme: light dark;
+    }
+    html[data-theme="dark"]{ --bg:#0f0f10; --fg:#eaeaea; --muted:#a8a8a8; --accent:#60a5fa; --card:#151618; }
+    body{ margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji'; background:var(--bg); color:var(--fg); }
+    a{ color:inherit; }
+
+    /* === Layout === */
+    .container{ max-width:1100px; margin:0 auto; padding:0 1rem; }
+    header{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(6px); background:color-mix(in oklab, var(--bg) 80%, transparent); border-bottom:1px solid color-mix(in oklab, var(--fg) 8%, transparent); }
+    nav{ display:flex; align-items:center; justify-content:space-between; padding: .85rem 0; }
+    .brand{ display:flex; gap:.75rem; align-items:center; font-weight:700; letter-spacing:.2px; }
+    .brand .dot{ width:.6rem; height:.6rem; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 25%, transparent); }
+
+    .hero{ padding:3.5rem 0 2rem; }
+    .hero h1{ font-size: clamp(1.8rem, 2.5vw + 1rem, 3rem); line-height:1.1; margin:0 0 .5rem; }
+    .hero p{ margin:.25rem 0; color:var(--muted); }
+    .stack{ margin-top:.75rem; font-weight:600; }
+
+    .section{ padding:2rem 0; }
+
+    /* Buttons */
+    .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.65rem 1rem; border-radius: var(--radius); border:1px solid currentColor; text-decoration:none; line-height:1; box-shadow:none; transition: transform .06s ease, background .2s ease; }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:focus-visible{ outline:2px solid currentColor; outline-offset:3px; }
+    .btn-primary{ background:var(--fg); color:var(--bg); border-color:var(--fg); }
+    .btn-ghost{ background:transparent; }
+
+    /* Projects grid */
+    .projects{ display:grid; gap:1.25rem; }
+    @media (min-width:768px){ .projects{ grid-template-columns:repeat(3, 1fr); } }
+
+    .card{ background:var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
+    .card img{ width:100%; height:auto; display:block; aspect-ratio: 1200/675; object-fit:cover; }
+    .card .content{ padding:1rem; display:flex; flex-direction:column; gap:.5rem; }
+    .card h3{ margin:.25rem 0; font-size:1.1rem; }
+    .muted{ color:var(--muted); }
+    .actions{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
+
+    /* Contact */
+    #contacto h2{ margin:0 0 .5rem; }
+
+    footer{ padding: 2rem 0 3rem; color:var(--muted); text-align:center; }
+
+    /* theme toggle */
+    #themeToggle{ background:transparent; border:1px solid currentColor; border-radius:999px; padding:.45rem .7rem; cursor:pointer; }
+    html{scroll-behavior:smooth;}
+  </style>
 </head>
 <body>
-<header class="header">
-  <div class="container row">
-    <div>
-      <h1>Portfolio de Agustín Altamiranda</h1>
-      <p>Desarrollador Web — HTML • CSS • JavaScript</p>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand" aria-label="Identidad del sitio">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Agustín Altamiranda — Frontend</span>
+        </div>
+        <div style="display:flex; gap:.5rem; align-items:center;">
+          <a id="fiverr-link" class="btn btn-primary" href="#contacto" aria-label="Ir a la sección de contacto">💬 Contactame</a>
+          <button id="themeToggle" aria-label="Cambiar tema">🌙</button>
+        </div>
+      </nav>
     </div>
-    <div>
-      <a class="btn" href="https://wa.me/5491134968752" target="_blank">WhatsApp</a>
-      <a class="btn outline" href="https://github.com/Agustinalt102" target="_blank">GitHub</a>
-    </div>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-  <section class="grid" id="proyectos">
-    <!-- Mini E-commerce -->
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="Mini E-commerce">
-      <div class="body">
-        <h3>Mini E-commerce</h3>
-        <p class="muted">Catálogo con filtros, búsqueda y carrito persistente en LocalStorage.</p>
-        <div style="display:flex;gap:10px;margin-top:8px">
-          <a class="btn outline" href="https://agus-mini-ecommerce.netlify.app/" target="_blank" rel="noopener">Ver demo</a>
-          <a class="btn outline" href="https://github.com/Agustinalt102/mini-ecommerce" target="_blank" rel="noopener">Ver código</a>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Construyo interfaces rápidas, limpias y responsive</h1>
+        <p>Landing pages, mini e‑commerce y maquetación HTML/CSS/JS.</p>
+        <p class="stack">Stack: HTML • CSS (Flex/Grid) • JavaScript • Git/GitHub</p>
+      </div>
+    </section>
+
+    <section id="about-mini" class="section" aria-label="Acerca de mí (resumen)">
+      <div class="container">
+        <p><strong>Frontend (HTML/CSS/JS)</strong>. Hago landings rápidas, mini e‑commerce y maquetación prolija. Código limpio, accesible y listo para publicar.</p>
+      </div>
+    </section>
+
+    <section id="proyectos" class="section" aria-label="Proyectos destacados">
+      <div class="container">
+        <div class="projects">
+
+          <!-- Card: Mini E-commerce -->
+          <article class="card">
+            <img src="https://via.placeholder.com/1200x675.png?text=Mini+E-commerce" alt="Mini e‑commerce con listado de productos y carrito" loading="lazy" width="1200" height="675">
+            <div class="content">
+              <h3>Mini E‑commerce</h3>
+              <p class="muted">Catálogo + carrito (LocalStorage). Responsive.</p>
+              <div class="actions">
+                <a class="btn btn-ghost btn-demo" data-project="Mini E-commerce" href="https://agustinalt102.github.io/mini-ecommerce/" target="_blank" rel="noopener">Ver demo</a>
+                <a class="btn btn-ghost btn-code" data-project="Mini E-commerce" href="https://github.com/Agustinalt102/mini-ecommerce" target="_blank" rel="noopener">Ver código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card: Landing -->
+          <article class="card">
+            <img src="https://via.placeholder.com/1200x675.png?text=Landing+Page" alt="Landing page con hero, secciones de servicios y CTA" loading="lazy" width="1200" height="675">
+            <div class="content">
+              <h3>Landing</h3>
+              <p class="muted">Landing estática, rápida y responsive.</p>
+              <div class="actions">
+                <a class="btn btn-ghost btn-demo" data-project="Landing" href="https://agustin-landing.netlify.app/" target="_blank" rel="noopener">Ver demo</a>
+                <a class="btn class="btn btn-ghost btn-code" data-project="Landing" href="https://github.com/Agustinalt102/landing" target="_blank" rel="noopener">Ver código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card: Portfolio (este sitio) -->
+          <article class="card">
+            <img src="https://via.placeholder.com/1200x675.png?text=Portfolio" alt="Página de portfolio con tarjetas de proyectos y enlaces" loading="lazy" width="1200" height="675">
+            <div class="content">
+              <h3>Portfolio</h3>
+              <p class="muted">Portfolio personal. Código ordenado y semántico.</p>
+              <div class="actions">
+                <a class="btn btn-ghost btn-code" data-project="Portfolio" href="https://github.com/Agustinalt102/portfolio" target="_blank" rel="noopener">Ver código</a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
-    </article>
+    </section>
 
-    <!-- Blog con modo oscuro -->
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop" alt="Blog con modo oscuro">
-      <div class="body">
-        <h3>Blog con modo oscuro</h3>
-        <p class="muted">Toggle persistente con localStorage, maquetado semántico y responsive.</p>
-        <div style="display:flex;gap:10px;margin-top:8px">
-          <a class="btn outline" href="https://portfolio-agustin-alt.netlify.app/03-mi-rincon-web/index.html" target="_blank" rel="noopener">Ver demo</a>
-          <a class="btn outline" href="https://github.com/Agustinalt102/portfolio" target="_blank" rel="noopener">Ver código</a>
-        </div>
+    <section id="contacto" class="section" aria-label="Contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p>Escribime a <a href="mailto:agustin.altamiranda.dev@gmail.com">agustin.altamiranda.dev@gmail.com</a> o conectemos en 
+          <a href="https://github.com/Agustinalt102" target="_blank" rel="noopener">GitHub</a> y 
+          <a href="https://www.linkedin.com/in/tu-linkedin" target="_blank" rel="noopener">LinkedIn</a>.
+        </p>
       </div>
-    </article>
+    </section>
+  </main>
 
-    <!-- Landing One-Page -->
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop" alt="Landing One-Page">
-      <div class="body">
-        <h3>Landing One-Page</h3>
-        <p class="muted">Landing profesional con formulario Netlify Forms, diseño responsive y modo claro/oscuro.</p>
-        <div style="display:flex;gap:10px;margin-top:8px">
-          <a class="btn outline" href="https://agustin-landing.netlify.app/" target="_blank" rel="noopener">Ver demo</a>
-          <a class="btn outline" href="https://github.com/Agustinalt102/landing-onepage" target="_blank" rel="noopener">Ver código</a>
-        </div>
-      </div>
-    </article>
-  </section>
-</main>
+  <footer>
+    <div class="container">© <span id="y"></span> Agustín Altamiranda. Hecho con HTML, CSS y un mate al lado.</div>
+  </footer>
 
-<footer class="footer">
-  <div class="container">
-    <small>© <span id="year"></span> Agustín Altamiranda</small><br>
-    <a href="mailto:Agustin.Alt.97@gmail.com">Agustin.Alt.97@gmail.com</a> ·
-    <a href="https://wa.me/5491134968752" target="_blank">WhatsApp</a> ·
-    <a href="https://github.com/Agustinalt102" target="_blank">GitHub</a>
-  </div>
-</footer>
+  <script>
+    (function(){
+      // Año actual
+      document.getElementById('y').textContent = new Date().getFullYear();
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear()
-</script>
+      // Fallback de imágenes: si no cargan, mostrar placeholder SVG con el texto del alt
+      const makePH = (text)=>{
+        const t = (text || 'Proyecto').replace(/[<>]/g, '');
+        const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'>
+<rect fill='%23151618' width='100%' height='100%'/>
+<text x='50%' y='50%' fill='%23bbbbbb' font-family='system-ui, -apple-system, Segoe UI, Roboto' font-size='48' text-anchor='middle' dominant-baseline='middle'>${t}</text>
+</svg>`;
+        return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+      };
+      document.querySelectorAll('.card img').forEach(img=>{
+        img.addEventListener('error', ()=>{ img.src = makePH(img.alt); }, { once:true });
+      });
 
+      // Aria labels automáticos + seguridad en enlaces externos
+      document.querySelectorAll('.btn-demo[data-project]').forEach(a=>{
+        const n = a.getAttribute('data-project');
+        a.setAttribute('aria-label', `Ver demo de ${n} (se abre en una pestaña nueva)`);
+        a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+      });
+      document.querySelectorAll('.btn-code[data-project]').forEach(a=>{
+        const n = a.getAttribute('data-project');
+        a.setAttribute('aria-label', `Ver código de ${n} en GitHub (se abre en una pestaña nueva)`);
+        a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+      });
+
+      // Dark mode toggle (opcional)
+      const key = 'theme';
+      const saved = localStorage.getItem(key);
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      const btn = document.getElementById('themeToggle');
+      btn && btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', cur);
+        localStorage.setItem(key, cur);
+      });
+    })();
+  </script>
 </body>
 </html>
